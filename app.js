@@ -17,7 +17,7 @@ function agregarAmigo() {
   // Se limpia el campo de entrada
   limpiarCampo();
 
-  alert(amigos);
+  actualizarLista();
 }
 
 // Función que verifica si un nombre es vacio
@@ -39,4 +39,19 @@ function limpiarCampo() {
   let input = document.getElementById("amigo");
   input.value = "";
   input.focus(); // Establece el foco en el campo después de limpiarlo
+}
+
+// Función para actualizar la lista de amigos
+function actualizarLista() {
+  // Obtener el elemento de la lista
+  let lista = document.getElementById("listaAmigos");
+
+  // Limpiar la lista existente
+  lista.innerHTML = "";
+
+  // Iterar sobre el arreglo
+  for (let i = 0; i < amigos.length; i++) {
+    // Agregar elementos a la lista
+    lista.innerHTML += `<li>${amigos[i]}</li>`;
+  }
 }
