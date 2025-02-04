@@ -22,11 +22,7 @@ function agregarAmigo() {
 
 // Función que verifica si un nombre es vacio
 function esVacio(nombre) {
-  let nombreSinEspacios = nombre.trim();
-  if (nombre == "") {
-    return true;
-  }
-  return false;
+  return nombre.trim() === "";
 }
 
 // Función que agregar un amigo al arreglo de amigos
@@ -41,17 +37,45 @@ function limpiarCampo() {
   input.focus(); // Establece el foco en el campo después de limpiarlo
 }
 
+// Función para limpiar la lista de amigos en pantalla
+function limpiarLista() {
+  let lista = document.getElementById("listaAmigos");
+  lista.innerHTML = "";
+}
+
 // Función para actualizar la lista de amigos
 function actualizarLista() {
+  limpiarLista();
+
   // Obtener el elemento de la lista
   let lista = document.getElementById("listaAmigos");
-
-  // Limpiar la lista existente
-  lista.innerHTML = "";
 
   // Iterar sobre el arreglo
   for (let i = 0; i < amigos.length; i++) {
     // Agregar elementos a la lista
     lista.innerHTML += `<li>${amigos[i]}</li>`;
   }
+}
+
+// Función para sortear los amigos
+function sortearAmigo() {
+  // Validar que haya amigos disponibles
+  if (amigos.length === 0) {
+    alert("No hay amigos en la lista.");
+    return;
+  }
+
+  // Generar un indice aleatorio
+  let indice = Math.floor(Math.random() * amigos.length);
+
+  // Obtener el nombre sorteado
+  let amigoSorteado = amigos[indice];
+
+  // Mostrar el resultado
+  let resultado = document.getElementById("resultado");
+  resultado.innerHTML = `El amigo secreto sorteado es: ${amigoSorteado}`;
+
+  // Limpiar los amigos ingresados
+  limpiarLista();
+  amigos = [];
 }
